@@ -9,7 +9,7 @@ Created on Mon Apr 28 12:45:51 2025
 ###
 import matplotlib.pyplot as plt
 
-def morgageAmatorizationSchedule(APR, principal, yearsLeft):
+def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
     
     APR = APR/100 # so you dont have to put gross decimals in
     monthsLeft = yearsLeft * 12 # calulcuates the amount in months
@@ -28,13 +28,16 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft):
     
     # Loops through all the months
     for i in range((monthsLeft)):
+        # Allows for early payoff
+        if principalList[i] <= 0: 
+            break
         
         # Calculate interest for this month
         interest = principal * monthlyInterest
         interestList.append(interest)
 
         # Payment applied to principal
-        principalPayment = payment - interest
+        principalPayment = payment + extraPayment - interest
         principal -= principalPayment
         principalList.append(principal)
         cumulativeInterest += interest
@@ -42,7 +45,8 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft):
         
         if (i+1) % 12 == 0:
             yearlyAmountList.append(principal)
-    
+        
+
     
     
     # This does the plotting!
@@ -67,9 +71,10 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft):
     plt.show()
 
     totalInterestPaid = sum(interestList)
-    totalPaid = totalInterestPaid + principal
+    totalPaid = totalInterestPaid + principalList[1]
+    print(totalPaid)
     print(f"Total interest paid over the life of the loan: ${totalInterestPaid:.2f}")  
-    print(f"Total Paid Over {yearsLeft} Years is {totalPaid}")
+    print(f"Total Paid Over {yearsLeft} Years: ${totalPaid:.2f}")
     
     
     # Returns some values you might want
@@ -79,4 +84,4 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft):
 
 # This is to test my fucntion
 if __name__ == "__main__":
-    a = morgageAmatorizationSchedule(5, 100000, 30)    
+    a = morgageAmatorizationSchedule(5, 100000, 15, 1500)    
