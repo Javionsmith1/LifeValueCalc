@@ -85,4 +85,4 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
 
 # This is to test my fucntion
 if __name__ == "__main__":
-    a = morgageAmatorizationSchedule(5, 100000, 15, 1500)    
+    a = morgageAmatorizationSchedule(5, 100000, 15)    
