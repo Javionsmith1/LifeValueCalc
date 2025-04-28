@@ -39,6 +39,7 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
         # Payment applied to principal
         principalPayment = payment + extraPayment - interest
         principal -= principalPayment
+        principal = max(principal, 0)
         principalList.append(principal)
         cumulativeInterest += interest
         cumulativeInterestList.append(cumulativeInterest)
@@ -71,7 +72,7 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
     plt.show()
 
     totalInterestPaid = sum(interestList)
-    totalPaid = totalInterestPaid + principalList[1]
+    totalPaid = totalInterestPaid + principalList[0]
     print(totalPaid)
     print(f"Total interest paid over the life of the loan: ${totalInterestPaid:.2f}")  
     print(f"Total Paid Over {yearsLeft} Years: ${totalPaid:.2f}")
