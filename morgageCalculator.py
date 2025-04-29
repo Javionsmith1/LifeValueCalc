@@ -62,6 +62,7 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
     plt.legend()
     plt.show()
     
+    # Plots interest paid over time
     plt.figure(figsize=(12,6))
     plt.plot(interestList, label='Monthly Interest Paid ($)', color='orange')
     plt.title('Monthly Interest Paid Over Time')
@@ -73,12 +74,13 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
 
     totalInterestPaid = sum(interestList)
     totalPaid = totalInterestPaid + principalList[0]
-    print(totalPaid)
+    
+    # Prints some messages to screen to show you how badly you are gettig fucked
     print(f"Total interest paid over the life of the loan: ${totalInterestPaid:.2f}")  
     print(f"Total Paid Over {yearsLeft} Years: ${totalPaid:.2f}")
     
     
-    # Returns some values you might want
+    # Returns some values you might want if you are using this function somewhere else
     return principalList, interestList, yearlyAmountList
         
 
