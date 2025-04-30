@@ -9,7 +9,7 @@ Created on Mon Apr 28 12:45:51 2025
 ###
 import matplotlib.pyplot as plt
 
-def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
+def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 1000):
     
     APR = APR/100 # so you dont have to put gross decimals in
     monthsLeft = yearsLeft * 12 # calulcuates the amount in months
@@ -87,4 +87,4 @@ def morgageAmatorizationSchedule(APR, principal, yearsLeft, extraPayment = 0):
 
 # This is to test my fucntion
 if __name__ == "__main__":
-    a = morgageAmatorizationSchedule(5, 100000, 15)    
+    a = morgageAmatorizationSchedule(5, 200000, 15)    
